@@ -88,6 +88,13 @@ const PanelOpciones = props => {
       />
       <DatNumber path="chaosX" label="X noise" min={0} max={1.0} step={0.05} />
       <DatNumber path="chaosY" label="Y noise" min={0} max={1.0} step={0.05} />
+      <DatNumber
+        path="vpadding"
+        label="VPadding"
+        min={0}
+        max={1}
+        step={0.05}
+      />
     </StyedDatGui>
   );
 };
@@ -190,13 +197,15 @@ const Canvas = opts => {
   let numLineas = opts.numLineas;
   let w = 100;
   let h = 100;
+  let vpadding = opts.vpadding;
   let lineas = Array(numLineas)
     .fill()
     .map(_ => {
       return 1;
     });
 
-  const offsety = w / numLineas;
+  const lineHeight = h / numLineas;
+  const offsety = lineHeight * vpadding;
   return (
     <CanvasContainer>
       <svg width="100%" height="100%" viewBox={`0 0 ${w} ${h}`}>
@@ -205,7 +214,7 @@ const Canvas = opts => {
             <Line
               offsety={offsety}
               w={w}
-              lineNumber={i}
+              lineNumber={i+1}
               numSegmentos={opts.numSegmentos}
               lineColor={opts.lineColor}
               strokeWidth={opts.strokeWidth}
@@ -226,6 +235,7 @@ function App() {
     numSegmentos: 50,
     chaosX: 0.5, //Influye en la dirección de los segumentos
     chaosY: 0.95 //Influye en la dirección de los segumentos
+    ,vpadding: 0.9,
   });
 
   useEffect(() => {
@@ -249,6 +259,7 @@ function App() {
           numSegmentos={params.numSegmentos}
           chaosX={params.chaosX}
           chaosY={params.chaosY}
+          vpadding={params.vpadding}
         />
         <h1>PNG</h1>
         <CanvasContainer>
