@@ -111,6 +111,15 @@ const CanvasContainer = styled.div`
   height: 500px;
 `;
 
+const HeaderComment = styled.p`
+  width: 100%;
+  background-color: #4169e1;
+  color: white;
+  a {
+   color:white;
+  }
+`
+
 /**
  * Pinta una linea
  */
@@ -230,7 +239,7 @@ function App() {
     <AppContainer>
       <StyledOpciones params={params} onUpdate={setParams} />
       <ContentArea>
-        <h1>
+                <h1>
           SVG <button onClick={exportFile}>Export SVG</button>{" "}
         </h1>
         <Canvas
@@ -245,7 +254,8 @@ function App() {
         <CanvasContainer>
           <canvas alt="pattern" id="canvas" width="500px" height="500px" />
         </CanvasContainer>
-      </ContentArea>
+  <HeaderComment>Non symmetrical zig zag line pattern generator. With 💙 by <a href="https://hugozap.com">hugozap</a> </HeaderComment>
+    </ContentArea>
     </AppContainer>
   );
 }
