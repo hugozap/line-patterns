@@ -102,6 +102,7 @@ const ContentArea = styled.div`
   overflow: auto;
   background-color: white;
   grid-area: 1 / 1 / 2 / 2;
+  text-align: center;
 `;
 
 const CanvasContainer = styled.div`
